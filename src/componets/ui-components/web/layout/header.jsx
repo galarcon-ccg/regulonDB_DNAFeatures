@@ -4,6 +4,8 @@ import React from "react";
 import { Image } from "../../ui_components";
 import * as logo from "./resources/regulonDB.png";
 
+// dropbox image
+const urlLogo = "https://www.dropbox.com/s/opzvt9e0598xcq6/regulonDB.png?dl=1";
 const Header = () => {
   return (
     <div>
@@ -11,7 +13,7 @@ const Header = () => {
         id={"logoRegulon"}
         imgTitle="RegulonDB logo"
         imgAlt="Logo of RegulonDB"
-        urlImage={logo.default}
+        urlImage={urlLogo}
         imgStyle={{ maxWidth: "239px", maxHeight: "48px" }}
       />
     </div>
