@@ -6,9 +6,9 @@ export function ValidateElements(dnaFeatures_data = []) {
         if (feature?.leftEndPosition && feature?.rightEndPosition) {
           let leftEndPosition = toInt(feature?.leftEndPosition);
           let rightEndPosition = toInt(feature?.rightEndPosition);
-          feature.leftEndPosition = leftEndPosition.toString();
-          feature.rightEndPosition = rightEndPosition.toString();
           if (leftEndPosition < rightEndPosition) {
+            feature.leftEndPosition = leftEndPosition;
+            feature.rightEndPosition = rightEndPosition;
             if (feature?.strand) {
               features.push(feature);
             } else {
@@ -102,6 +102,6 @@ function eMes(prop, inx) {
 }
 
 function toInt(str = "") {
-  str.replace("+", "");
+  str.toString().replace("+", "");
   return parseInt(str, 10);
 }

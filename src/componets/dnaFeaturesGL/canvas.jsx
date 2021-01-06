@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SVG } from "@svgdotjs/svg.js";
-import { draw_dna } from "./geneticElements/genetic_elements";
+import { draw_dna, draw_gene } from "./geneticElements/genetic_elements";
 
 const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
   const [canvas, setCanvas] = useState();
@@ -30,44 +30,58 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
   }
   if (canvas) {
     try {
-      dnaFeatures_data.map((feature) => {
-        let stroke = {
-          color: rgb_to_rgbFormat(feature?.lineRGBColor),
-          width: feature?.lineWidth,
-          linecap: feature?.lineType
-        };
-        let font = {
-          family: feature?.labelFont,
-          size: feature?.labelSize,
-          fill: feature?.labelRGGColor,
-          separation: "middle"
-        };
-        switch (feature?.objectType) {
-          case "DNA":
-          case "dna":
-            draw_dna({
-              id: feature?._id,
-              canva: canvas,
-              dnaPosLeft: feature?.leftEndPosition,
-              dnaPosRight: feature?.rightEndPosition,
-              labelName: feature?.labelName,
-              stroke: stroke,
-              font: font
-            });
-            break;
-          case "gene":
-            break;
-          default:
-            break;
-        }
-        return null;
-      });
+      const dna_info = dnaFeatures_data.find(
+        (feature) => feature?.objectType === "dna"
+      );
+      if (dna_info) {
+        const dna = draw_dna({
+          id: dna_info?._id,
+          canva: canvas,
+          dnaPosLeft: dna_info?.leftEndPosition,
+          dnaPosRight: dna_info?.rightEndPosition,
+          labelName: dna_info?.labelName,
+          stroke: stroke(dna_info),
+          font: font(dna_info)
+        });
+        dnaFeatures_data.map((feature) => {
+          switch (feature?.objectType) {
+            case "gene":
+              draw_gene({
+                id: feature?._id,
+                canva: canvas,
+                dna: dna
+              });
+              break;
+            default:
+              break;
+          }
+          return null;
+        });
+      } else {
+        console.log("Canvas: No DNA information in the data");
+      }
     } catch (error) {
       console.error("A problem occurred when drawing the data.");
     }
   }
   return <></>;
 };
+
+function stroke(feature) {
+  return {
+    color: rgb_to_rgbFormat(feature?.lineRGBColor),
+    width: feature?.lineWidth,
+    linecap: feature?.lineType
+  };
+}
+function font(feature) {
+  return {
+    family: feature?.labelFont,
+    size: feature?.labelSize,
+    fill: feature?.labelRGGColor,
+    separation: "middle"
+  };
+}
 
 export default Canvas;
 
