@@ -4,19 +4,40 @@ export function ValidateElements(dnaFeatures_data = []) {
     if (feature?._id) {
       if (feature?.objectType) {
         if (feature?.leftEndPosition && feature?.rightEndPosition) {
-          if (feature?.leftEndPosition < feature?.rightEndPosition) {
+          let leftEndPosition = toInt(feature?.leftEndPosition);
+          let rightEndPosition = toInt(feature?.rightEndPosition);
+          feature.leftEndPosition = leftEndPosition.toString();
+          feature.rightEndPosition = rightEndPosition.toString();
+          if (leftEndPosition < rightEndPosition) {
             if (feature?.strand) {
               features.push(feature);
+            } else {
+              eMes("strand", inx);
             }
+          } else {
+            console.warn(
+              inx,
+              "positions error",
+              feature?.leftEndPosition,
+              feature?.rightEndPosition
+            );
           }
         } else {
           if (feature?.linkedObjectsWhenNoPositions) {
             if (feature?.strand) {
               feature.push(feature);
+            } else {
+              eMes("strand", inx);
             }
+          } else {
+            eMes("posLeft and PosRigth", inx);
           }
         }
+      } else {
+        eMes("object Type", inx);
       }
+    } else {
+      eMes("id", inx);
     }
     return null;
   });
@@ -31,18 +52,25 @@ export function ValidateDNA(dnaFeatures_data = []) {
   if (dna) {
     return dnaFeatures_data;
   }
-  let dna_left = "0";
-  let dna_right = "1000";
+  let dna_left = undefined;
+  let dna_right = undefined;
   dnaFeatures_data.map((feature, idx) => {
-    if (idx === 0) {
-      dna_left = feature?.leftEndPosition;
-      dna_right = feature?.rightEndPosition;
-    } else {
-      if (dna_left < feature?.leftEndPosition) {
-        dna_left = feature?.leftEndPosition;
+    if (feature?.leftEndPosition && feature?.rightEndPosition) {
+      let leftEndPosition = toInt(feature?.leftEndPosition);
+      let rightEndPosition = toInt(feature?.rightEndPosition);
+      let plusLeft = feature?.leftEndPosition.indexOf("+");
+      let plusRight = feature?.rightEndPosition.indexOf("+");
+      if (plusLeft === -1 && !dna_left) {
+        dna_left = leftEndPosition;
       }
-      if (dna_right > feature?.rightEndPosition) {
-        dna_right = feature?.rightEndPosition;
+      if (plusRight === -1 && !dna_right) {
+        dna_right = rightEndPosition;
+      }
+      if (dna_left > leftEndPosition && plusLeft === -1) {
+        dna_left = leftEndPosition;
+      }
+      if (dna_right < rightEndPosition && plusRight === -1) {
+        dna_right = rightEndPosition;
       }
     }
     return null;
@@ -52,17 +80,28 @@ export function ValidateDNA(dnaFeatures_data = []) {
     labelFont: "",
     labelRGGColor: "",
     labelName: "",
-    labelSize: "",
-    leftEndPosition: dna_left,
-    lineRGBColor: "",
+    labelSize: "12",
+    leftEndPosition: dna_left.toString(),
+    lineRGBColor: "0,0,0",
     lineType: "",
     lineWidth: "",
     objectType: "dna",
     objectRGBColor: "",
-    rightEndPosition: dna_right,
+    rightEndPosition: dna_right.toString(),
     strand: "forward",
     tooltip: ""
   };
   dnaFeatures_data.push(dna_default);
   return dnaFeatures_data;
+}
+
+function eMes(prop, inx) {
+  console.warn(
+    `The element in the index: ${inx} is not valid, problem with its property ${prop}`
+  );
+}
+
+function toInt(str = "") {
+  str.replace("+", "");
+  return parseInt(str, 10);
 }

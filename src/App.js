@@ -1,3 +1,7 @@
+/**
+ * testing version 0.0.2
+ */
+
 import React from "react";
 import "./regulonDB_global.css";
 import { DNAsection, GeneSection } from "./componets/sections/sections";

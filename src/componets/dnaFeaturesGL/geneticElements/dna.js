@@ -1,6 +1,7 @@
-//draw DNA v 0.9.1
+//draw DNA v 0.9.5
 /**
- * Falta testear
+ * Requiere documetacion y encabezados del manifiesto de RegulonDB
+ * Los atributos no son validados
  */
 export default function DrawDna({
   id,
@@ -10,7 +11,6 @@ export default function DrawDna({
   dnaPosLeft = 800,
   dnaPosRight = 1000,
   labelName = "DNA",
-  color = "#f06",
   opacity = 1,
   stroke = { color: "#000", width: 1, linecap: "round" },
   font = {
@@ -61,7 +61,6 @@ export default function DrawDna({
     posRight: dnaPosRight,
     Size: dnaPosRight - dnaPosLeft,
     labelName: labelName,
-    color: color,
     opacity: opacity,
     stroke: stroke,
     font: font
