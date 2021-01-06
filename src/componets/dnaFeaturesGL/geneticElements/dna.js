@@ -1,31 +1,30 @@
 //draw DNA v 0.9.5
 /**
  * Requiere documetacion y encabezados del manifiesto de RegulonDB
- * Los atributos no son validados
+ *
  */
+import { stroke_validate, font_validate } from "./validation";
 export default function DrawDna({
   id,
   canva,
   x = 0,
   y = 100,
-  dnaPosLeft = 800,
-  dnaPosRight = 1000,
+  leftEndPosition = 800,
+  rightEndPosition = 1000,
   labelName = "DNA",
   opacity = 1,
-  stroke = { color: "#000", width: 1, linecap: "round" },
-  font = {
-    family: "Arial",
-    size: 12,
-    separation: "middle"
-  }
+  stroke,
+  font
 }) {
   //validacion
   if (!canva || !id) {
     return null;
   }
+  stroke = stroke_validate(stroke);
+  font = font_validate(font);
   //atributos de text
-  const dnaLletter = `${dnaPosLeft}`;
-  const dnaRletter = `${dnaPosRight}`;
+  const dnaLletter = `${leftEndPosition}`;
+  const dnaRletter = `${rightEndPosition}`;
   //atributos de DNA
   const canvaW = canva.node.clientWidth;
   const lx1 = x + (font["size"] * dnaLletter.length) / 2 + 5;
@@ -57,9 +56,9 @@ export default function DrawDna({
     widthActive: widthActive,
     forwardActive: forwardActive,
     reverseActive: reverseActive,
-    posLeft: dnaPosLeft,
-    posRight: dnaPosRight,
-    Size: dnaPosRight - dnaPosLeft,
+    leftEndPosition: leftEndPosition,
+    rightEndPosition: rightEndPosition,
+    size: rightEndPosition - leftEndPosition,
     labelName: labelName,
     opacity: opacity,
     stroke: stroke,

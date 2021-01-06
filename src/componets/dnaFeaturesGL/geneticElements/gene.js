@@ -2,36 +2,39 @@
 /**
  * falta testear
  */
+import { stroke_validate } from "./validation";
 export default function DrawGene({
   id,
   canva,
   anchor,
   dna,
   separation = 0,
-  posLeft = 0,
-  posRigth = 20,
-  name = "geneName",
+  leftEndPosition = 0,
+  rightEndPosition = 20,
+  labelName = "geneName",
   strand = "forward",
   color = "aqua",
   opacity = 1,
-  stroke = { color: "#000", width: 1, linecap: "round" }
+  stroke
 }) {
-  if (!canva || !dna || !id | (posLeft > posRigth)) {
+  if (!canva || !dna || !id | (leftEndPosition > rightEndPosition)) {
     return null;
   }
+  stroke = stroke_validate(stroke);
   //anchor
   if (anchor) {
-    posLeft = anchor.posLeft;
-    posRigth = posLeft + 10;
+    leftEndPosition = anchor.leftEndPosition;
+    rightEndPosition = leftEndPosition + 10;
   }
   //atributos
   const dnaX = dna.x,
-    size = posRigth - posLeft,
+    size = rightEndPosition - leftEndPosition,
     dnaY = dna.y,
     widthActive = dna.widthActive,
-    dnaSize = dna.Size,
-    x = ((posLeft - dna.posLeft) * widthActive) / dnaSize;
+    dnaSize = dna.size,
+    x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize;
   let sizeP = (size * widthActive) / dnaSize;
+  //console.log(dna.leftEndPosition);
   // scale
   let heigthActive = dna.forwardActive;
   if (strand === "reverse") {
@@ -106,9 +109,9 @@ export default function DrawGene({
     heigth: geneH,
     dna: dna,
     separation: separation,
-    posLeft: posLeft,
-    posRigth: posRigth,
-    name: name,
+    leftEndPosition: leftEndPosition,
+    rightEndPosition: rightEndPosition,
+    labelName: labelName,
     strand: strand,
     color: color,
     opacity: color,

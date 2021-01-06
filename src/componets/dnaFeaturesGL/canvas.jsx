@@ -37,8 +37,8 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
         const dna = draw_dna({
           id: dna_info?._id,
           canva: canvas,
-          dnaPosLeft: dna_info?.leftEndPosition,
-          dnaPosRight: dna_info?.rightEndPosition,
+          leftEndPosition: dna_info?.leftEndPosition,
+          rightEndPosition: dna_info?.rightEndPosition,
           labelName: dna_info?.labelName,
           stroke: stroke(dna_info),
           font: font(dna_info)
@@ -49,7 +49,12 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
               draw_gene({
                 id: feature?._id,
                 canva: canvas,
-                dna: dna
+                dna: dna,
+                leftEndPosition: feature?.leftEndPosition,
+                rightEndPosition: feature?.rightEndPosition,
+                labelName: feature?.labelName,
+                stroke: stroke(feature),
+                font: font(feature)
               });
               break;
             default:
@@ -61,7 +66,7 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
         console.log("Canvas: No DNA information in the data");
       }
     } catch (error) {
-      console.error("A problem occurred when drawing the data.");
+      console.error("A problem occurred when drawing the data.", error);
     }
   }
   return <></>;
@@ -78,7 +83,7 @@ function font(feature) {
   return {
     family: feature?.labelFont,
     size: feature?.labelSize,
-    fill: feature?.labelRGGColor,
+    fill: rgb_to_rgbFormat(feature?.labelRGGColor),
     separation: "middle"
   };
 }
