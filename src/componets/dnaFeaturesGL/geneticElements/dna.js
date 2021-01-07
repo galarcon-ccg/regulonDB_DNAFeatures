@@ -1,4 +1,4 @@
-//draw DNA v 0.9.5
+//draw DNA v 0.10.0
 /**
  * Requiere documetacion y encabezados del manifiesto de RegulonDB
  *
@@ -8,7 +8,7 @@ export default function DrawDna({
   id,
   canva,
   x = 0,
-  y = 100,
+  y = 150,
   leftEndPosition = 800,
   rightEndPosition = 1000,
   labelName = "DNA",

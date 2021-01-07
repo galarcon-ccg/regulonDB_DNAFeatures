@@ -1,4 +1,4 @@
-//DrawGene v 0.9.3
+//DrawGene v 0.10.0
 /**
  * falta agregar la funcion para mostrar el corte del elemto
  */
@@ -101,7 +101,12 @@ export default function DrawGene({
     });
     posY = geneH * 2 + posY;
   }
-  //anchor
+  //tooltip info
+  //data-tip='=( •̀‿•́)' data-for='svgTooltip2'
+  gene.attr({
+    "data-tip": "",
+    "data-for": `${canva.node?.id}-${id}`
+  });
 
   return {
     id: id,
@@ -121,6 +126,7 @@ export default function DrawGene({
     opacity: color,
     stroke: stroke,
     font: font,
-    objectType: "gene"
+    objectType: "gene",
+    tooltip: tooltip
   };
 }

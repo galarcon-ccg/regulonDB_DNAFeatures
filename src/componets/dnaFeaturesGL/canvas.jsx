@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SVG } from "@svgdotjs/svg.js";
+import Tooltip from "./tooltip";
 import { draw_dna, draw_gene } from "./geneticElements/genetic_elements";
 
 const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
@@ -12,7 +13,7 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
         id_drawPlace,
         id_canvas,
         drawPlace.clientWidth,
-        200
+        300
       );
       //console.log(newCanvas)
       if (!canvas) {
@@ -43,28 +44,36 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
           stroke: stroke(dna_info),
           font: font(dna_info)
         });
+        const dna_elements = [];
+        //draw elements
         dnaFeatures_data.map((feature) => {
           switch (feature?.objectType) {
             case "gene":
-              draw_gene({
-                id: feature?._id,
-                canva: canvas,
-                dna: dna,
-                leftEndPosition: feature?.leftEndPosition,
-                rightEndPosition: feature?.rightEndPosition,
-                strand: feature?.strand,
-                labelName: feature?.labelName,
-                stroke: stroke(feature),
-                font: font(feature),
-                color: rgb_to_rgbFormat(feature?.objectRGBColor),
-                tooltip: feature?.tooltip
-              });
+              dna_elements.push(
+                draw_gene({
+                  id: feature?._id,
+                  canva: canvas,
+                  dna: dna,
+                  leftEndPosition: feature?.leftEndPosition,
+                  rightEndPosition: feature?.rightEndPosition,
+                  strand: feature?.strand,
+                  labelName: feature?.labelName,
+                  stroke: stroke(feature),
+                  font: font(feature),
+                  color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                  tooltip: feature?.tooltip
+                })
+              );
               break;
             default:
               break;
           }
           return null;
         });
+        //draw labels
+
+        //draw tooltip
+        return Tooltip({ id_canvas: id_canvas, dna_elements: dna_elements });
       } else {
         console.log("Canvas: No DNA information in the data");
       }

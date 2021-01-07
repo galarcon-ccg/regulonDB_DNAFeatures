@@ -9,7 +9,7 @@ const GeneSection = () => {
       <div id="gene_Draw">
         <DrawFeatures
           id_drawPlace="gene_Draw"
-          id_canvas="gene_canvas"
+          id_canvas="gene_canvas01"
           dnaFeatures_data={Gene_data}
         />
       </div>

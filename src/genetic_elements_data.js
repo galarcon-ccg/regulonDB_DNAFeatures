@@ -19,10 +19,26 @@ export const DNA_data = [
 
 export const Gene_data = [
   {
+    _id: "Gene03",
+    labelFont: "",
+    labelRGGColor: "",
+    labelName: "Gene03",
+    labelSize: "",
+    leftEndPosition: "150",
+    lineRGBColor: "",
+    lineType: "",
+    lineWidth: "",
+    objectType: "gene",
+    objectRGBColor: "12,167,89",
+    rightEndPosition: "1000",
+    strand: "reverse",
+    tooltip: "this a gene. 1"
+  },
+  {
     _id: "Gene01",
     labelFont: "",
     labelRGGColor: "",
-    labelName: "",
+    labelName: "Gene01",
     labelSize: "",
     leftEndPosition: "50",
     lineRGBColor: "",
@@ -32,7 +48,7 @@ export const Gene_data = [
     objectRGBColor: "",
     rightEndPosition: "1500",
     strand: "reverse",
-    tooltip: "this a gene."
+    tooltip: "this a gene. 1"
   },
   {
     _id: "Gene02",
@@ -48,6 +64,6 @@ export const Gene_data = [
     objectRGBColor: "255,57,243",
     rightEndPosition: "1000",
     strand: "forward",
-    tooltip: "this a gene"
+    tooltip: "<strong>Genome position:</strong><br> 500-1000"
   }
 ];

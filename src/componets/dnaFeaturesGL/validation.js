@@ -95,6 +95,37 @@ export function ValidateDNA(dnaFeatures_data = []) {
   return dnaFeatures_data;
 }
 
+export function validateOrderPosLeft(dnaFeatures_data = []) {
+  dnaFeatures_data.sort(function (a, b) {
+    if (a?.leftEndPosition > b?.leftEndPosition) {
+      return 1;
+    }
+    if (a?.leftEndPosition < b?.leftEndPosition) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  });
+  //console.log(dnaFeatures_data);
+  return dnaFeatures_data;
+}
+
+export function validateOverlap(dnaFeatures_data = []) {
+  dnaFeatures_data = validateOrderPosLeft(dnaFeatures_data);
+  dnaFeatures_data.map((feature, idx) => {
+    if (
+      feature?.leftEndPosition &&
+      feature?.rightEndPosition &&
+      feature?.objectType !== "dna"
+    ) {
+      const leftEndPosition = toInt(feature?.leftEndPosition);
+      const rightEndPosition = toInt(feature?.rightEndPosition);
+    }
+    return null;
+  });
+  return dnaFeatures_data;
+}
+
 function eMes(prop, inx) {
   console.warn(
     `The element in the index: ${inx} is not valid, problem with its property ${prop}`
@@ -102,6 +133,9 @@ function eMes(prop, inx) {
 }
 
 function toInt(str = "") {
+  if (Number.isInteger(str)) {
+    return str;
+  }
   str.toString().replace("+", "");
   return parseInt(str, 10);
 }
