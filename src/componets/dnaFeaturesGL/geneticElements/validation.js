@@ -32,11 +32,11 @@ export function font_validate(font) {
   return font;
 }
 
-export function color_validate(color) {
+export function color_validate(color, defColor = "#000") {
   try {
     color = new Color(color);
   } catch (e) {
-    color = new Color("#000");
+    color = new Color(defColor);
   }
   return color;
 }

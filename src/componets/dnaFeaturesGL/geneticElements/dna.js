@@ -14,7 +14,8 @@ export default function DrawDna({
   labelName = "DNA",
   opacity = 1,
   stroke,
-  font
+  font,
+  tooltip = ""
 }) {
   //validacion
   if (!canva || !id) {
@@ -62,6 +63,8 @@ export default function DrawDna({
     labelName: labelName,
     opacity: opacity,
     stroke: stroke,
-    font: font
+    font: font,
+    tooltip: tooltip,
+    objectType: "dna"
   };
 }

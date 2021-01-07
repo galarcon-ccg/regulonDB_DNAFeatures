@@ -52,9 +52,12 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
                 dna: dna,
                 leftEndPosition: feature?.leftEndPosition,
                 rightEndPosition: feature?.rightEndPosition,
+                strand: feature?.strand,
                 labelName: feature?.labelName,
                 stroke: stroke(feature),
-                font: font(feature)
+                font: font(feature),
+                color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                tooltip: feature?.tooltip
               });
               break;
             default:

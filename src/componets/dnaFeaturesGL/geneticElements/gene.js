@@ -1,8 +1,8 @@
-//DrawGene v 0.9.0
+//DrawGene v 0.9.3
 /**
- * falta testear
+ * falta agregar la funcion para mostrar el corte del elemto
  */
-import { stroke_validate } from "./validation";
+import { stroke_validate, font_validate, color_validate } from "./validation";
 export default function DrawGene({
   id,
   canva,
@@ -15,12 +15,16 @@ export default function DrawGene({
   strand = "forward",
   color = "aqua",
   opacity = 1,
-  stroke
+  stroke,
+  font,
+  tooltip = ""
 }) {
   if (!canva || !dna || !id | (leftEndPosition > rightEndPosition)) {
     return null;
   }
   stroke = stroke_validate(stroke);
+  font = font_validate(font);
+  color = color_validate(color, "#00FFFF");
   //anchor
   if (anchor) {
     leftEndPosition = anchor.leftEndPosition;
@@ -115,6 +119,8 @@ export default function DrawGene({
     strand: strand,
     color: color,
     opacity: color,
-    stroke: stroke
+    stroke: stroke,
+    font: font,
+    objectType: "gene"
   };
 }
