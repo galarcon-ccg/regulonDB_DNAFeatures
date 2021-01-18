@@ -4,7 +4,26 @@ export const base = [
     objectType: "gene",
     labelName: "hola",
     leftEndPosition: "100",
-    rightEndPosition: "1000",
+    rightEndPosition: "300",
+    strand: "forward"
+  }
+];
+
+export const ppGpp_data = [
+  {
+    _id: "ppgpp-dna",
+    objectType: "dna",
+    labelName: "",
+    leftEndPosition: "100",
+    rightEndPosition: "300",
+    strand: "forward"
+  },
+  {
+    _id: "ppgpp1",
+    objectType: "ppGpp",
+    labelName: "DksA-ppGpp",
+    leftEndPosition: "100",
+    rightEndPosition: "210",
     strand: "forward"
   }
 ];

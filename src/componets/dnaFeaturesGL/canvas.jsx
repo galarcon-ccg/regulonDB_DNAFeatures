@@ -4,7 +4,8 @@ import Tooltip from "./tooltip";
 import {
   draw_dna,
   draw_gene,
-  draw_operon
+  draw_operon,
+  draw_ppGpp
 } from "./geneticElements/genetic_elements";
 
 const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
@@ -89,6 +90,25 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
                 })
               );
               break;
+            case "ppgpp":
+            case "ppGpp":
+              dna_elements.push(
+                draw_ppGpp({
+                  id: feature?._id,
+                  canva: canvas,
+                  dna: dna,
+                  leftEndPosition: feature?.leftEndPosition,
+                  rightEndPosition: feature?.rightEndPosition,
+                  strand: feature?.strand,
+                  labelName: feature?.labelName,
+                  stroke: stroke(feature),
+                  font: font(feature),
+                  color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                  tooltip: feature?.tooltip,
+                  separation: 0
+                })
+              );
+              break;
             default:
               break;
           }
@@ -129,6 +149,6 @@ export default Canvas;
 export function DrawCanva(id_drawPlace, id_canvas, width = 100, height = 200) {
   return SVG().addTo(`#${id_drawPlace}`).size(width, height).id(id_canvas);
 }
-export function rgb_to_rgbFormat(rgb = "0,0,0") {
+export function rgb_to_rgbFormat(rgb = "175,175,175") {
   return `rgb(${rgb})`;
 }

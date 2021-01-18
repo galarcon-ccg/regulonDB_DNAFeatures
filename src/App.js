@@ -7,7 +7,8 @@ import "./regulonDB_global.css";
 import {
   DNAsection,
   GeneSection,
-  OperonSection
+  OperonSection,
+  PpGppSection
 } from "./componets/sections/sections";
 import { Header, Cover } from "./componets/ui-components/ui_components";
 
@@ -24,6 +25,7 @@ export default function App() {
         <DNAsection />
         <GeneSection />
         <OperonSection />
+        <PpGppSection />
       </article>
     </div>
   );

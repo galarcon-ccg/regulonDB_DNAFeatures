@@ -15,7 +15,7 @@ export default function DrawPpGpp({
   rightEndPosition = 10,
   labelName = "ppGpp",
   strand = "forward",
-  color = "#fff",
+  color = "#AFAFAF",
   opacity = 1,
   stroke,
   font,
@@ -26,7 +26,7 @@ export default function DrawPpGpp({
   }
   stroke = stroke_validate(stroke);
   font = font_validate(font);
-  color = color_validate(color, "#00FFFF");
+  color = color_validate(color, "#AFAFAF");
   // anchor
   if (anchor) {
     leftEndPosition = anchor.leftEndPosition;
@@ -45,15 +45,20 @@ export default function DrawPpGpp({
   if (strand === "reverse") {
     heigthActive = dna.reverseActive;
   }
-  const proportion = heigthActive * 0.1;
+  const proportion = heigthActive * 0.2;
   //atributos de cuerpo
-  let ppGppH = proportion;
-  let ppGppW = proportion / 2;
-
+  let ppGppH = proportion / 2;
+  let ppGppW = sizeP;
+  let dksAX = 0;
   let posX = x + dnaX;
-  let posY = dnaY - separation - ppGppW;
+  let posY = dnaY - separation - ppGppH;
+  if (labelName === "DksA-ppGpp") {
+    ppGppW = sizeP / 2;
+    dksAX = posX;
+    posX += ppGppW;
+  }
   //Draw
-  const ppGpp = canva.ellipse(ppGppH, ppGppW);
+  const ppGpp = canva.ellipse(ppGppW, ppGppH);
   ppGpp.move(posX, posY).stroke(stroke).fill(color);
   const group = canva.group();
   group.add(ppGpp);
@@ -64,15 +69,12 @@ export default function DrawPpGpp({
       size: proportion / 5,
       separation: "middle"
     })
-    .move(posX + ppGppH / 6, posY + proportion / 7);
+    .move(sizeP, posY + proportion / 7);
   group.add(textP);
   //DksA effect
-  if (labelName === "DksA") {
-    const dksA = canva.ellipse(ppGppH, ppGppW);
-    dksA
-      .move(posX + ppGppH / 1.3, posY)
-      .stroke(stroke)
-      .fill(color);
+  if (labelName === "DksA-ppGpp") {
+    const dksA = canva.ellipse(ppGppW, ppGppH);
+    dksA.move(dksAX, posY).stroke(stroke).fill(color);
     const textD = canva.text("DksA");
     textD
       .font({
@@ -80,7 +82,7 @@ export default function DrawPpGpp({
         size: proportion / 4,
         separation: "middle"
       })
-      .move(posX + ppGppH, posY + proportion / 7);
+      .move(posX / 2, posY + proportion / 7);
     group.add(dksA);
     group.add(textD);
   }
