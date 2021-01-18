@@ -1,3 +1,44 @@
+export const base = [
+  {
+    _id: "_base",
+    objectType: "gene",
+    labelName: "hola",
+    leftEndPosition: "100",
+    rightEndPosition: "1000",
+    strand: "forward"
+  }
+];
+
+export const Operon_data = [
+  {
+    _id: "Operon1",
+    objectType: "operon",
+    labelName: "hola",
+    leftEndPosition: "250",
+    rightEndPosition: "800",
+    strand: "reverse",
+    objectRGBColor: "255,167,89"
+  },
+  {
+    _id: "Operon2",
+    objectType: "operon",
+    labelName: "hola",
+    leftEndPosition: "50",
+    rightEndPosition: "500",
+    strand: "forward",
+    objectRGBColor: "12,255,89"
+  },
+  {
+    _id: "Operon3",
+    objectType: "operon",
+    labelName: "hola",
+    leftEndPosition: "600",
+    rightEndPosition: "1000",
+    strand: "forward",
+    objectRGBColor: "12,167,255"
+  }
+];
+
 export const DNA_data = [
   {
     _id: "001A",

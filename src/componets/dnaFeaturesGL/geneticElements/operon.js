@@ -1,10 +1,10 @@
-//DrawGene v 0.10.0
+//DrawOperon v 0.10.0
 /**
- * falta agregar la funcion para mostrar el corte del elemento,
- *
+ *falta agregar la funcion para mostrar el corte del elemento
  */
 import { stroke_validate, font_validate, color_validate } from "./validation";
-export default function DrawGene({
+
+export default function DrawOperon({
   id,
   canva,
   anchor,
@@ -12,7 +12,7 @@ export default function DrawGene({
   separation = 0,
   leftEndPosition = 0,
   rightEndPosition = 20,
-  labelName = "geneName",
+  labelName = "operonName",
   strand = "forward",
   color = "aqua",
   opacity = 1,
@@ -20,7 +20,7 @@ export default function DrawGene({
   font,
   tooltip = ""
 }) {
-  if (!canva || !dna || !id | (leftEndPosition > rightEndPosition)) {
+  if (!canva || !dna || !id || leftEndPosition > rightEndPosition) {
     return null;
   }
   stroke = stroke_validate(stroke);
@@ -46,31 +46,28 @@ export default function DrawGene({
   }
   const proportion = heigthActive * 0.1;
   //atributos de cuerpo
-  const geneH = proportion;
+  const operonH = proportion;
   const rowW = () => {
-    if (heigthActive * 0.1 > sizeP) {
-      return geneH * 0.3;
+    if (heigthActive * 0.5 > sizeP) {
+      return sizeP * 0.1;
     }
     return heigthActive * 0.1;
   };
   const lx1 = sizeP + dnaX + x;
-  const ly1 = geneH;
+  const ly1 = operonH;
   const lx2 = sizeP + dnaX - rowW() + x;
-  const ly2 = 0;
   let posX = x + dnaX;
-  let posY = dnaY - separation - geneH * 2;
-  //Draw Gene
-  const gene = canva.path(
-    "m " +
+  let posY = dnaY - separation - operonH;
+  //Draw operon
+  const operon = canva.path(
+    " m " +
       (x + dnaX) +
       "," +
-      geneH / 2 +
+      operonH / 2 +
       " v " +
-      geneH +
+      operonH +
       " h " +
       (sizeP - rowW()) +
-      " v " +
-      geneH / 2 +
       " L " +
       lx1 +
       "," +
@@ -78,44 +75,35 @@ export default function DrawGene({
       " " +
       lx2 +
       "," +
-      ly2 +
-      " v " +
-      geneH / 2 +
+      operonH / 2 +
       " z"
   );
-  gene.move(posX, posY);
-  gene.id(id);
-  gene.fill(color);
-  gene.stroke(stroke);
-  gene.opacity(opacity);
-
+  operon.move(posX, posY);
+  operon.id(id);
+  operon.fill(color);
+  operon.stroke(stroke);
+  operon.opacity(opacity);
   // reverse effect
   if (strand === "reverse") {
     if (anchor) {
-      posX = x;
+      posX = x + dnaX;
       posY = dnaY + separation;
     }
-    gene.transform({
+    operon.transform({
       rotate: 180,
-      translateY: geneH * 2
+      translateY: operonH
     });
-    posY = geneH * 2 + posY;
+    //posY = operonH * 2 + posY;
   }
-  //tooltip info
-  //data-tip='=( •̀‿•́)' data-for='svgTooltip2'
-  gene.attr({
-    "data-tip": "",
-    "data-for": `${canva.node?.id}-${id}`
-  });
-
+  //return
   return {
     id: id,
     canva: canva,
-    draw: gene,
+    draw: operon,
     posX: posX,
     posY: posY,
     sizeP: sizeP,
-    heigth: geneH,
+    heigth: operonH,
     dna: dna,
     separation: separation,
     leftEndPosition: leftEndPosition,
@@ -126,7 +114,7 @@ export default function DrawGene({
     opacity: color,
     stroke: stroke,
     font: font,
-    objectType: "gene",
+    objectType: "operon",
     tooltip: tooltip
   };
 }

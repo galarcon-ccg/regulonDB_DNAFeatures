@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { SVG } from "@svgdotjs/svg.js";
 import Tooltip from "./tooltip";
-import { draw_dna, draw_gene } from "./geneticElements/genetic_elements";
+import {
+  draw_dna,
+  draw_gene,
+  draw_operon
+} from "./geneticElements/genetic_elements";
 
 const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
   const [canvas, setCanvas] = useState();
@@ -47,6 +51,7 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
         const dna_elements = [];
         //draw elements
         dnaFeatures_data.map((feature) => {
+          //console.log(feature?.objectType);
           switch (feature?.objectType) {
             case "gene":
               dna_elements.push(
@@ -61,7 +66,26 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
                   stroke: stroke(feature),
                   font: font(feature),
                   color: rgb_to_rgbFormat(feature?.objectRGBColor),
-                  tooltip: feature?.tooltip
+                  tooltip: feature?.tooltip,
+                  separation: 0
+                })
+              );
+              break;
+            case "operon":
+              dna_elements.push(
+                draw_operon({
+                  id: feature?._id,
+                  canva: canvas,
+                  dna: dna,
+                  leftEndPosition: feature?.leftEndPosition,
+                  rightEndPosition: feature?.rightEndPosition,
+                  strand: feature?.strand,
+                  labelName: feature?.labelName,
+                  stroke: stroke(feature),
+                  font: font(feature),
+                  color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                  tooltip: feature?.tooltip,
+                  separation: 0
                 })
               );
               break;
@@ -81,7 +105,7 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
       console.error("A problem occurred when drawing the data.", error);
     }
   }
-  return <></>;
+  return <>canvas error</>;
 };
 
 function stroke(feature) {

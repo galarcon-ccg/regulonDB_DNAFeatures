@@ -4,7 +4,11 @@
 
 import React from "react";
 import "./regulonDB_global.css";
-import { DNAsection, GeneSection } from "./componets/sections/sections";
+import {
+  DNAsection,
+  GeneSection,
+  OperonSection
+} from "./componets/sections/sections";
 import { Header, Cover } from "./componets/ui-components/ui_components";
 
 export default function App() {
@@ -19,6 +23,7 @@ export default function App() {
         <p>Description</p>
         <DNAsection />
         <GeneSection />
+        <OperonSection />
       </article>
     </div>
   );
