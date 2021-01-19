@@ -14,9 +14,28 @@ export const Riboswitch_data = [
     _id: "riboA",
     objectType: "riboswitch",
     labelName: "hola",
-    leftEndPosition: "100",
+    leftEndPosition: "250",
     rightEndPosition: "300",
-    strand: "forward"
+    strand: "forward",
+    objectRGBColor: "0,255,0"
+  },
+  {
+    _id: "riboC",
+    objectType: "riboswitch",
+    labelName: "hola",
+    leftEndPosition: "150",
+    rightEndPosition: "200",
+    strand: "forward",
+    objectRGBColor: "0,55,255"
+  },
+  {
+    _id: "riboB",
+    objectType: "riboswitch",
+    labelName: "hola",
+    leftEndPosition: "100",
+    rightEndPosition: "200",
+    strand: "reverse",
+    objectRGBColor: "0,255,255"
   }
 ];
 

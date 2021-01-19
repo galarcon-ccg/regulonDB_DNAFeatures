@@ -1,6 +1,7 @@
 /** RiboSwitch 0.10.0
  *
- *
+ * falta etiqueta
+ * valores de return no definidos
  */
 import { stroke_validate, font_validate, color_validate } from "./validation";
 
@@ -12,7 +13,7 @@ export default function DrawRiboswitch({
   separation = 0,
   leftEndPosition = 0,
   rightEndPosition = 100,
-  labelName = "DksA",
+  labelName = "riboswitch",
   strand = "forward",
   color = "#afa",
   opacity = 1,
@@ -63,8 +64,7 @@ export default function DrawRiboswitch({
     let h = 35 - ((25 - proportion) * 8) / 10;
     return h;
   };
-  let altura = bodyFootH + bodyHeigth + headHeigth();
-  console.log(headHeigth());
+  //console.log(headHeigth());
   //Draw Body
   const body = canva.path(
     "M 0,0 v " +
@@ -105,9 +105,9 @@ export default function DrawRiboswitch({
   group.add(body);
   group.add(head);
   if (strand === "reverse") {
+    group.move(bodyX, dnaY + 1);
     group.transform({
-      rotate: 180,
-      translateY: altura
+      rotate: 180
     });
   }
 
