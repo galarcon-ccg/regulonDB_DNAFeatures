@@ -15,16 +15,25 @@ export const ppGpp_data = [
     objectType: "dna",
     labelName: "",
     leftEndPosition: "100",
-    rightEndPosition: "300",
+    rightEndPosition: "800",
     strand: "forward"
   },
   {
     _id: "ppgpp1",
     objectType: "ppGpp",
     labelName: "DksA-ppGpp",
-    leftEndPosition: "100",
-    rightEndPosition: "210",
+    leftEndPosition: "160",
+    rightEndPosition: "260",
     strand: "forward"
+  },
+  {
+    _id: "ppgpp2",
+    objectType: "ppGpp",
+    labelName: "DksA-ppGpp",
+    leftEndPosition: "560",
+    rightEndPosition: "660",
+    strand: "reverse",
+    objectRGBColor: "255,0,0"
   }
 ];
 

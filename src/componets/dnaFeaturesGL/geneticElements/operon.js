@@ -1,6 +1,7 @@
 //DrawOperon v 0.10.0
 /**
  *falta agregar la funcion para mostrar el corte del elemento
+ *
  */
 import { stroke_validate, font_validate, color_validate } from "./validation";
 

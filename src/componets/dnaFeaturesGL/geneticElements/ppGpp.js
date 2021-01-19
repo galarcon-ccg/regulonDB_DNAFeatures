@@ -1,7 +1,7 @@
 //DrawPpGpp v 0.10.0
 /**
  *falta agregar la funcion para mostrar el corte del elemento
- * Agregar opaciodad
+ * Agregar opaciodad, Texto se sale de su sitio
  */
 import { stroke_validate, font_validate, color_validate } from "./validation";
 
@@ -69,7 +69,7 @@ export default function DrawPpGpp({
       size: proportion / 5,
       separation: "middle"
     })
-    .move(sizeP, posY + proportion / 7);
+    .move(posX + ppGppW / 2, posY + proportion / 7);
   group.add(textP);
   //DksA effect
   if (labelName === "DksA-ppGpp") {
@@ -82,14 +82,18 @@ export default function DrawPpGpp({
         size: proportion / 4,
         separation: "middle"
       })
-      .move(posX / 2, posY + proportion / 7);
+      .move(dksAX + ppGppW / 2, posY + proportion / 7);
     group.add(dksA);
     group.add(textD);
   }
   //strand effect
   if (strand === "reverse") {
     posY = dnaY + separation;
-    group.move(posX, posY);
+    if (labelName === "DksA-ppGpp") {
+      group.move(dksAX, posY);
+    } else {
+      group.move(posX, posY);
+    }
   }
   return {
     id: id,

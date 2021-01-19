@@ -4,7 +4,7 @@ import { Gene_data } from "../../genetic_elements_data";
 
 const GeneSection = () => {
   return (
-    <div id="section_gene">
+    <div id="section_Genes">
       <h2>Gene</h2>
       <div id="gene_Draw">
         <DrawFeatures
