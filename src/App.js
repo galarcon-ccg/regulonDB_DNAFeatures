@@ -9,11 +9,19 @@ import {
   GeneSection,
   OperonSection,
   PpGppSection,
-  PromotorSection
+  PromotorSection,
+  TnrASection
 } from "./componets/sections/sections";
 import { Header, Cover } from "./componets/ui-components/ui_components";
 
-const ge = ["DNA", "Genes", "Operon", "ppGpp", "Promoter"];
+const ge = [
+  "DNA",
+  "Genes",
+  "Operon",
+  "ppGpp",
+  "Promoter",
+  "Transnational_Attenuator"
+];
 
 export default function App() {
   return (
@@ -31,6 +39,7 @@ export default function App() {
         <OperonSection />
         <PpGppSection />
         <PromotorSection />
+        <TnrASection />
       </article>
       <aside>
         <div style={{ position: "fixed", top: 0 }}>

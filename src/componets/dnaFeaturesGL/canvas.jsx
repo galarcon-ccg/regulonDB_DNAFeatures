@@ -6,7 +6,8 @@ import {
   draw_gene,
   draw_operon,
   draw_ppGpp,
-  draw_promoter
+  draw_promoter,
+  draw_transnationalA
 } from "./geneticElements/genetic_elements";
 
 const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
@@ -113,6 +114,24 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
             case "promoter":
               dna_elements.push(
                 draw_promoter({
+                  id: feature?._id,
+                  canva: canvas,
+                  dna: dna,
+                  leftEndPosition: feature?.leftEndPosition,
+                  rightEndPosition: feature?.rightEndPosition,
+                  strand: feature?.strand,
+                  labelName: feature?.labelName,
+                  stroke: stroke(feature),
+                  font: font(feature),
+                  color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                  tooltip: feature?.tooltip,
+                  separation: 0
+                })
+              );
+              break;
+            case "transnational_attenuator":
+              dna_elements.push(
+                draw_transnationalA({
                   id: feature?._id,
                   canva: canvas,
                   dna: dna,

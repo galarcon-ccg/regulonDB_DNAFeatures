@@ -8,6 +8,45 @@ export const base = [
     strand: "forward"
   }
 ];
+
+export const tnA_data = [
+  {
+    _id: "tnA-dna",
+    objectType: "dna",
+    labelName: "",
+    leftEndPosition: "100",
+    rightEndPosition: "1000",
+    strand: "forward"
+  },
+  {
+    _id: "tnA1",
+    objectType: "transnational_attenuator",
+    labelName: "hola",
+    leftEndPosition: "150",
+    rightEndPosition: "300",
+    strand: "reverse",
+    objectRGBColor: "0,255,255"
+  },
+  {
+    _id: "tnA2",
+    objectType: "transnational_attenuator",
+    labelName: "hola",
+    leftEndPosition: "200",
+    rightEndPosition: "300",
+    strand: "forward",
+    objectRGBColor: "0,255,0"
+  },
+  {
+    _id: "tnA3",
+    objectType: "transnational_attenuator",
+    labelName: "hola",
+    leftEndPosition: "500",
+    rightEndPosition: "720",
+    strand: "forward",
+    objectRGBColor: "255,0,0"
+  }
+];
+
 export const promotor_data = [
   {
     _id: "promo-dna",
