@@ -8,6 +8,34 @@ export const base = [
     strand: "forward"
   }
 ];
+export const promotor_data = [
+  {
+    _id: "promo-dna",
+    objectType: "dna",
+    labelName: "",
+    leftEndPosition: "100",
+    rightEndPosition: "800",
+    strand: "forward"
+  },
+  {
+    _id: "promoA",
+    objectType: "promoter",
+    labelName: "Promoter",
+    leftEndPosition: "500",
+    rightEndPosition: "501",
+    strand: "reverse",
+    lineRGBColor: "0,0,0"
+  },
+  {
+    _id: "promoB",
+    objectType: "promoter",
+    labelName: "Promoter",
+    leftEndPosition: "250",
+    rightEndPosition: "251",
+    strand: "forward",
+    lineRGBColor: "0,0,0"
+  }
+];
 
 export const ppGpp_data = [
   {

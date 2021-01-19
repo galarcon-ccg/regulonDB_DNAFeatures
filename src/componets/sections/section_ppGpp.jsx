@@ -2,7 +2,7 @@ import React from "react";
 import { DrawFeatures } from "../dnaFeaturesGL/dna_features";
 import { ppGpp_data } from "../../genetic_elements_data";
 
-const GeneSection = () => {
+const PpGppSection = () => {
   return (
     <div id="section_ppGpp">
       <h2>ppGpp</h2>
@@ -17,4 +17,4 @@ const GeneSection = () => {
   );
 };
 
-export default GeneSection;
+export default PpGppSection;
