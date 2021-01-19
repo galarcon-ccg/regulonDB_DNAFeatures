@@ -11,7 +11,8 @@ import {
   PpGppSection,
   PromotorSection,
   TnrASection,
-  RiboswitchSection
+  RiboswitchSection,
+  RNASection
 } from "./componets/sections/sections";
 import { Header, Cover } from "./componets/ui-components/ui_components";
 
@@ -22,7 +23,8 @@ const ge = [
   "ppGpp",
   "Promoter",
   "Riboswitch",
-  "Transnational_Attenuator"
+  "Transnational_Attenuator",
+  "RNA"
 ];
 
 export default function App() {
@@ -42,6 +44,7 @@ export default function App() {
         <PpGppSection />
         <PromotorSection />
         <RiboswitchSection />
+        <RNASection />
         <TnrASection />
       </article>
       <aside>

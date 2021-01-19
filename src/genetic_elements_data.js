@@ -8,6 +8,34 @@ export const base = [
     strand: "forward"
   }
 ];
+export const rna_data = [
+  {
+    _id: "rna-dna",
+    objectType: "dna",
+    labelName: "",
+    leftEndPosition: "100",
+    rightEndPosition: "500",
+    strand: "forward"
+  },
+  {
+    _id: "rna_B",
+    objectType: "rna",
+    labelName: "hola",
+    leftEndPosition: "250",
+    rightEndPosition: "390",
+    strand: "reverse",
+    objectRGBColor: "0,255,0"
+  },
+  {
+    _id: "rna_A",
+    objectType: "rna",
+    labelName: "hola",
+    leftEndPosition: "100",
+    rightEndPosition: "190",
+    strand: "forward",
+    objectRGBColor: "0,0,255"
+  }
+];
 
 export const Riboswitch_data = [
   {

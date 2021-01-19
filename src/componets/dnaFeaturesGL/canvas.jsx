@@ -8,7 +8,8 @@ import {
   draw_ppGpp,
   draw_promoter,
   draw_riboswitch,
-  draw_transnationalA
+  draw_transnationalA,
+  draw_rna
 } from "./geneticElements/genetic_elements";
 
 const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
@@ -151,6 +152,24 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
             case "riboswitch":
               dna_elements.push(
                 draw_riboswitch({
+                  id: feature?._id,
+                  canva: canvas,
+                  dna: dna,
+                  leftEndPosition: feature?.leftEndPosition,
+                  rightEndPosition: feature?.rightEndPosition,
+                  strand: feature?.strand,
+                  labelName: feature?.labelName,
+                  stroke: stroke(feature),
+                  font: font(feature),
+                  color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                  tooltip: feature?.tooltip,
+                  separation: 0
+                })
+              );
+              break;
+            case "rna":
+              dna_elements.push(
+                draw_rna({
                   id: feature?._id,
                   canva: canvas,
                   dna: dna,
