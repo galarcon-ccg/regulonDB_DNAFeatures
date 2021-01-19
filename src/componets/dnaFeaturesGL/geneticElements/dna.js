@@ -1,7 +1,7 @@
 //draw DNA v 0.10.0
 /**
  * Requiere documetacion y encabezados del manifiesto de RegulonDB
- *
+ *  falta etiqueta
  */
 import { stroke_validate, font_validate } from "./validation";
 export default function DrawDna({

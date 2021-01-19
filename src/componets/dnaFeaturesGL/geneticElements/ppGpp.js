@@ -2,6 +2,7 @@
 /**
  *falta agregar la funcion para mostrar el corte del elemento
  * Agregar opaciodad, Texto se sale de su sitio
+ * falta etiqueta
  */
 import { stroke_validate, font_validate, color_validate } from "./validation";
 
