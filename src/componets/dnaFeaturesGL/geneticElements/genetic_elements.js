@@ -4,6 +4,7 @@ import draw_operon from "./operon";
 import draw_ppGpp from "./ppGpp";
 import draw_promoter from "./promoter";
 import draw_transnationalA from "./transnational_attenuator";
+import draw_riboswitch from "./riboswitch";
 
 export {
   draw_dna,
@@ -11,5 +12,6 @@ export {
   draw_operon,
   draw_ppGpp,
   draw_promoter,
-  draw_transnationalA
+  draw_transnationalA,
+  draw_riboswitch
 };

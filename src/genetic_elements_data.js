@@ -9,6 +9,17 @@ export const base = [
   }
 ];
 
+export const Riboswitch_data = [
+  {
+    _id: "riboA",
+    objectType: "riboswitch",
+    labelName: "hola",
+    leftEndPosition: "100",
+    rightEndPosition: "300",
+    strand: "forward"
+  }
+];
+
 export const tnA_data = [
   {
     _id: "tnA-dna",
@@ -25,14 +36,15 @@ export const tnA_data = [
     leftEndPosition: "150",
     rightEndPosition: "300",
     strand: "reverse",
-    objectRGBColor: "0,255,255"
+    objectRGBColor: "0,255,255",
+    tooltip: "Hola :3"
   },
   {
     _id: "tnA2",
     objectType: "transnational_attenuator",
     labelName: "hola",
     leftEndPosition: "200",
-    rightEndPosition: "300",
+    rightEndPosition: "251",
     strand: "forward",
     objectRGBColor: "0,255,0"
   },
@@ -154,6 +166,22 @@ export const DNA_data = [
 ];
 
 export const Gene_data = [
+  {
+    _id: "Gene03A",
+    labelFont: "",
+    labelRGGColor: "",
+    labelName: "Gene03",
+    labelSize: "",
+    leftEndPosition: "150",
+    lineRGBColor: "",
+    lineType: "",
+    lineWidth: "",
+    objectType: "gene",
+    objectRGBColor: "255,0,89",
+    rightEndPosition: "169",
+    strand: "forward",
+    tooltip: "this a gene. 1"
+  },
   {
     _id: "Gene03",
     labelFont: "",

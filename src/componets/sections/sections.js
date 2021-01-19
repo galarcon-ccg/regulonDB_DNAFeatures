@@ -4,6 +4,7 @@ import OperonSection from "./section_operon";
 import PpGppSection from "./section_ppGpp";
 import PromotorSection from "./section_promoter";
 import TnrASection from "./section_transnational_a";
+import RiboswitchSection from "./section_riboswitch";
 
 export {
   DNAsection,
@@ -11,5 +12,6 @@ export {
   OperonSection,
   PpGppSection,
   PromotorSection,
-  TnrASection
+  TnrASection,
+  RiboswitchSection
 };

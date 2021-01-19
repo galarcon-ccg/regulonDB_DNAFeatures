@@ -10,7 +10,8 @@ import {
   OperonSection,
   PpGppSection,
   PromotorSection,
-  TnrASection
+  TnrASection,
+  RiboswitchSection
 } from "./componets/sections/sections";
 import { Header, Cover } from "./componets/ui-components/ui_components";
 
@@ -20,6 +21,7 @@ const ge = [
   "Operon",
   "ppGpp",
   "Promoter",
+  "Riboswitch",
   "Transnational_Attenuator"
 ];
 
@@ -39,6 +41,7 @@ export default function App() {
         <OperonSection />
         <PpGppSection />
         <PromotorSection />
+        <RiboswitchSection />
         <TnrASection />
       </article>
       <aside>
