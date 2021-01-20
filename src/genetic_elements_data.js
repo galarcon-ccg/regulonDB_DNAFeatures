@@ -9,6 +9,33 @@ export const base = [
   }
 ];
 
+export const tcA_data = [
+  {
+    _id: "term_dna",
+    objectType: "dna",
+    labelName: "hola",
+    leftEndPosition: "100",
+    rightEndPosition: "1000",
+    strand: "forward"
+  },
+  {
+    _id: "termA",
+    objectType: "transcriptional_attenuator",
+    labelName: "hola",
+    leftEndPosition: "300",
+    rightEndPosition: "430",
+    strand: "forward"
+  },
+  {
+    _id: "termB",
+    objectType: "transcriptional_attenuator",
+    labelName: "hola",
+    leftEndPosition: "400",
+    rightEndPosition: "630",
+    strand: "reverse"
+  }
+];
+
 export const terminator_data = [
   {
     _id: "term_dna",

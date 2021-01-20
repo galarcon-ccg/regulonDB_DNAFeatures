@@ -8,6 +8,7 @@ import draw_riboswitch from "./riboswitch";
 import draw_rna from "./rna";
 import draw_site from "./tf_binding_sites";
 import draw_terminator from "./terminator";
+import draw_transcriptionalA from "./transcriptional_attenuator";
 
 export {
   draw_dna,
@@ -19,5 +20,6 @@ export {
   draw_riboswitch,
   draw_rna,
   draw_site,
-  draw_terminator
+  draw_terminator,
+  draw_transcriptionalA
 };

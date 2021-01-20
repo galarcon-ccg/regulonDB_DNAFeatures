@@ -1,10 +1,9 @@
-// Terminador 0.10.0
+// TranscripAtt 0.10.0
 /**
  * Falta testear
- * head de la figura se sale de posicion
  */
 import { stroke_validate, font_validate, color_validate } from "./validation";
-export default function DrawTerminador({
+export default function DrawTransncriptionalAttenuator({
   id,
   canva,
   anchor,
@@ -25,7 +24,7 @@ export default function DrawTerminador({
   }
   stroke = stroke_validate(stroke);
   font = font_validate(font);
-  color = color_validate(color, "#000000");
+  color = color_validate(color, "#00FFFF");
   if (anchor) {
     leftEndPosition = anchor.leftEndPosition;
     rightEndPosition = leftEndPosition + 1;
@@ -39,33 +38,32 @@ export default function DrawTerminador({
     dnaSize = dna.size,
     x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize;
   let sizeP = (size * widthActive) / dnaSize;
-  //scale
+  // scale
   let heigthActive = dna.forwardActive;
   if (strand === "reverse") {
     heigthActive = dna.reverseActive;
   }
   const proportion = heigthActive * 0.1;
-  //atributos de Cuerpo
-  let bodyHeigth = proportion * 3 + separation;
+  // atributos de Cuerpo
+  let bodyHeigth = proportion * 2 + separation;
   let bodyFootH = proportion / 4;
   let bodyFootW = 0;
   if (sizeP >= proportion) {
-    bodyFootW = sizeP / 2 - proportion / 3;
+    bodyFootW = sizeP / 2 - 6 - proportion / 3;
   }
-  let posX = x + dnaX;
-  let posY = dnaY - bodyHeigth - bodyFootH;
-  //atributos de Cabeza
+  let bodyX = x + dnaX;
+  let bodyY = dnaY - bodyHeigth - bodyFootH;
+  // atributos de Cabezas
   let headH = proportion;
-  let terminadorH = bodyHeigth + headH;
-  let headSacale = () => {
-    return (proportion * 33) / 25 / 33;
-  };
-  let headWidth = () => {
-    return 35 - ((25 - proportion) * 8) / 10;
-  };
-  let headHeigth = () => {
-    return 35 - ((25 - proportion) * 8) / 10;
-  };
+  let headX = dnaX + x + sizeP / 2 - headH / 2 - 8;
+  let headY = dnaY - separation - 100;
+  // atributos de la linea
+  let lineX = x + dnaX + sizeP / 2;
+  let lineY = dnaY - bodyHeigth + 5;
+
+  let posX = x;
+  let posY = headY;
+  let transcriH = headH + bodyHeigth;
   // dibujo de  BODY
   const body = canva.path(
     "M 0,0 v " +
@@ -83,31 +81,35 @@ export default function DrawTerminador({
       " v " +
       -bodyHeigth
   );
-  body.fill(color).move(posX, posY);
+  body.fill(color).move(bodyX, bodyY);
   body.stroke(stroke);
   body.opacity(opacity);
-  // dibujo de HEAD
-  var head = canva.path(
-    "M 23.2 28 L 23.2 27.1 A 14.7 14.7 0 0 0 30 14.7 A 14.7 14.7 0 0 0 15.2 0 L 15.2 0 A 14.7 14.7 0 0 0 0.5 14.7 A 14.7 14.7 0 0 0 7.2 27.1 L 7.2 28"
+  // dibujo de HEAD's
+  var head1 = canva.path(
+    "m 25 55 c -11.9 -9.5 -5 -23 1.6 -25. l 0.0 -1.7 C 30 24.6 33.4 20 33.4 15 C 33.4 6.8 26.8 0.2 18.6 0.2 v 0 C 10.5 0.250109 3.90831 6.8556 3.9082 15.0039 C 3.91361 20.0093 5.7943 24.6707 10 27.3848 v 0.865234 v 26.75"
   );
-  let headX = dnaX + x + sizeP / 2 - headWidth() / 2;
-  let headY = dnaY - bodyHeigth - headHeigth();
+  var head2 = canva.path(
+    "m 60 110 v 0 c 3.5 -2.4 5.7 -6.6 5.7 -11.1 c -0.09 -7.3 -5.6 -13.2 -12.5 -13.2 v 0 c -6.91559 0.0001 -12.5218 5.94519 -12.5219 13.2788 c 0.0046 4.50501 2.1627 8.70032 5.73214 11.1431 v 0.0122"
+  );
+  let head = canva.group();
+  head.add(head1);
+  head.add(head2);
+  head.fill(color).stroke(stroke);
   head.move(headX, headY);
-  head.transform({
-    scale: headSacale()
-  });
-  head.fill(color);
-  head.stroke(stroke);
-  head.opacity(opacity);
+
+  // dibujo de LINE
+  var line = canva.path("m 0 5 V" + bodyHeigth + "");
+  line.stroke(stroke).move(lineX, lineY);
 
   // reverse effect
   if (strand === "reverse") {
     var group = canva.group();
     group.add(body);
     group.add(head);
-    group.move(dnaX + x, dnaY);
+    group.add(line);
     group.transform({
-      rotate: 180
+      rotate: 180,
+      translateY: bodyHeigth + headH * 2
     });
   }
   return {
@@ -117,7 +119,7 @@ export default function DrawTerminador({
     posX: posX,
     posY: posY,
     sizeP: sizeP,
-    heigth: terminadorH,
+    heigth: transcriH,
     dna: dna,
     separation: separation,
     leftEndPosition: leftEndPosition,
@@ -128,7 +130,7 @@ export default function DrawTerminador({
     opacity: color,
     stroke: stroke,
     font: font,
-    objectType: "terminator",
+    objectType: "transcriptional_attenuator",
     tooltip: tooltip
   };
 }

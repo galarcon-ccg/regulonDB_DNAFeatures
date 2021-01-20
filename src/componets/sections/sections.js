@@ -8,7 +8,7 @@ import RiboswitchSection from "./section_riboswitch";
 import RNASection from "./section_rna";
 import SiteSection from "./sections_tf_binding_sites";
 import TerminatorSection from "./section_terminator";
-
+import TcASection from "./section_transcriptional_a";
 export {
   DNAsection,
   GeneSection,
@@ -19,5 +19,6 @@ export {
   RiboswitchSection,
   RNASection,
   SiteSection,
-  TerminatorSection
+  TerminatorSection,
+  TcASection
 };
