@@ -1,71 +1,72 @@
-/** RiboSwitch 0.10.0
- *
- * falta etiqueta
- * valores de return no definidos
+// Terminador 0.2.1
+/**
+ * Falta testear
+ * head de la figura se sale de posicion
  */
 import { stroke_validate, font_validate, color_validate } from "./validation";
-
-export default function DrawRiboswitch({
+export default function DrawTerminador({
   id,
   canva,
   anchor,
   dna,
-  separation = 0,
-  leftEndPosition = 0,
-  rightEndPosition = 100,
-  labelName = "riboswitch",
+  separation = 20,
+  leftEndPosition = 10,
+  rightEndPosition = 50,
+  labelName = "Name",
   strand = "forward",
-  color = "#afa",
+  color = "aqua",
   opacity = 1,
   stroke,
   font,
   tooltip = ""
 }) {
-  if (!canva || !dna || !id | (leftEndPosition > rightEndPosition)) {
+  if (!canva || !dna || !id || leftEndPosition > rightEndPosition) {
     return null;
   }
   stroke = stroke_validate(stroke);
   font = font_validate(font);
-  color = color_validate(color, "#00FFFF");
-  // anchor effect
+  color = color_validate(color, "#000000");
   if (anchor) {
     leftEndPosition = anchor.leftEndPosition;
-    rightEndPosition = leftEndPosition + 10;
+    rightEndPosition = leftEndPosition + 1;
+    strand = anchor.strand;
   }
-  //atributos
+  // atributos
   const dnaX = dna.x,
-    size = rightEndPosition - leftEndPosition,
     dnaY = dna.y,
+    size = rightEndPosition - leftEndPosition,
     widthActive = dna.widthActive,
     dnaSize = dna.size,
     x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize;
   let sizeP = (size * widthActive) / dnaSize;
-  // scale
+  //scale
   let heigthActive = dna.forwardActive;
   if (strand === "reverse") {
     heigthActive = dna.reverseActive;
   }
   const proportion = heigthActive * 0.1;
   //atributos de Cuerpo
-  let bodyHeigth = proportion * 2 + separation;
+  let bodyHeigth = proportion * 3 + separation;
   let bodyFootH = proportion / 4;
   let bodyFootW = 0;
   if (sizeP >= proportion) {
     bodyFootW = sizeP / 2 - proportion / 3;
   }
-  let bodyX = x + dnaX;
-  let bodyY = dnaY - bodyHeigth - bodyFootH;
-  //Atributos de cabeza
-
+  let posX = x + dnaX;
+  let posY = dnaY - bodyHeigth - bodyFootH;
+  //atributos de Cabeza
+  let headH = proportion;
+  let terminadorH = bodyHeigth + headH;
   let headSacale = () => {
     return (proportion * 33) / 25 / 33;
   };
-  let headHeigth = () => {
-    let h = 35 - ((25 - proportion) * 8) / 10;
-    return h;
+  let headWidth = () => {
+    return 35 - ((25 - proportion) * 8) / 10;
   };
-  //console.log(headHeigth());
-  //Draw Body
+  let headHeigth = () => {
+    return 35 - ((25 - proportion) * 8) / 10;
+  };
+  // dibujo de  BODY
   const body = canva.path(
     "M 0,0 v " +
       bodyHeigth +
@@ -82,42 +83,41 @@ export default function DrawRiboswitch({
       " v " +
       -bodyHeigth
   );
-  body.fill(color).move(bodyX, bodyY);
+  body.fill(color).move(posX, posY);
   body.stroke(stroke);
   body.opacity(opacity);
-
-  const head = canva.path(
-    "M 0,0 v 0 c 3.92467,-2.58104 6.63901,-6.13644 7.20008,-10.80012 l 9.14425,-4.37876 c 1.42935,0.40589 2.95449,0.31099 4.3225,-0.26895 3.31023,-1.40895 4.85186,-5.23431 3.44359,-8.54482 -1.40895,-3.31119 -5.23558,-4.85302 -8.54657,-3.44359 -1.56071,0.66486 -2.80056,1.91226 -3.45591,3.47699 l -7.00846,3.09906 c -2.82997,-4.98758 -8.11898,-8.07267 -13.85349,-8.08076 v 0 c -5.97645,0.006 -11.44813,3.35249 -14.17691,8.66963 l -6.84675,-3.04808 c -0.0709,-0.24923 -0.15661,-0.494 -0.25664,-0.73302 -1.40897,-3.31022 -5.23432,-4.85185 -8.54483,-3.44359 -3.31119,1.40895 -4.85303,5.23559 -3.44359,8.54658 1.25369,2.93501 4.44902,4.5297 7.54813,3.76703 l 9.27431,4.38228 c 0.61115,4.33052 3.63944,8.26071 7.20009,10.80012"
+  // dibujo de HEAD
+  var head = canva.path(
+    "M 23.2 28 L 23.2 27.1 A 14.7 14.7 0 0 0 30 14.7 A 14.7 14.7 0 0 0 15.2 0 L 15.2 0 A 14.7 14.7 0 0 0 0.5 14.7 A 14.7 14.7 0 0 0 7.2 27.1 L 7.2 28"
   );
-  let headX = dnaX + x + sizeP / 2 - 33;
+  let headX = dnaX + x + sizeP / 2 - headWidth() / 2;
   let headY = dnaY - bodyHeigth - headHeigth();
   head.move(headX, headY);
   head.transform({
-    scale: headSacale(),
-    translateX: -0.6
+    scale: headSacale()
   });
-  head.move(headX, headY);
   head.fill(color);
   head.stroke(stroke);
   head.opacity(opacity);
 
-  var group = canva.group();
-  group.add(body);
-  group.add(head);
+  // reverse effect
   if (strand === "reverse") {
-    group.move(bodyX, dnaY + 1);
+    var group = canva.group();
+    group.add(body);
+    group.add(head);
+    group.move(dnaX + x, dnaY);
     group.transform({
       rotate: 180
     });
   }
-
   return {
     id: id,
     canva: canva,
-    posX: 0,
-    posY: 0,
+    draw: group,
+    posX: posX,
+    posY: posY,
     sizeP: sizeP,
-    heigth: 0,
+    heigth: terminadorH,
     dna: dna,
     separation: separation,
     leftEndPosition: leftEndPosition,
@@ -128,7 +128,7 @@ export default function DrawRiboswitch({
     opacity: color,
     stroke: stroke,
     font: font,
-    objectType: "promoter",
+    objectType: "terminator",
     tooltip: tooltip
   };
 }

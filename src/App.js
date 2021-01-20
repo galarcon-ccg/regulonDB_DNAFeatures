@@ -13,7 +13,8 @@ import {
   TnrASection,
   RiboswitchSection,
   RNASection,
-  SiteSection
+  SiteSection,
+  TerminatorSection
 } from "./componets/sections/sections";
 import { Header, Cover } from "./componets/ui-components/ui_components";
 
@@ -26,6 +27,7 @@ const ge = [
   "Riboswitch",
   "RNA",
   "Sites",
+  "Terminator",
   "Transnational_Attenuator"
 ];
 
@@ -49,6 +51,7 @@ export default function App() {
         <RNASection />
         <SiteSection />
         <TnrASection />
+        <TerminatorSection />
       </article>
       <aside>
         <div style={{ position: "fixed", top: 0 }}>

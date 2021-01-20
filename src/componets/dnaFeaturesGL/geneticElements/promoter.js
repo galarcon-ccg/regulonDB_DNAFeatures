@@ -103,6 +103,9 @@ export default function DrawPromoter({
     strand: strand,
     color: color,
     opacity: color,
-    stroke: stroke
+    stroke: stroke,
+    font: font,
+    objectType: "promoter",
+    tooltip: tooltip
   };
 }

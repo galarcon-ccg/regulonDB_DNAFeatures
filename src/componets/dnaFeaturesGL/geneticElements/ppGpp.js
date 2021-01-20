@@ -111,6 +111,9 @@ export default function DrawPpGpp({
     strand: strand,
     color: color,
     opacity: color,
-    stroke: stroke
+    stroke: stroke,
+    font: font,
+    objectType: "ppGpp",
+    tooltip: tooltip
   };
 }

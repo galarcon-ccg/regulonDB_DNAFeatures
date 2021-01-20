@@ -7,6 +7,7 @@ import draw_transnationalA from "./transnational_attenuator";
 import draw_riboswitch from "./riboswitch";
 import draw_rna from "./rna";
 import draw_site from "./tf_binding_sites";
+import draw_terminator from "./terminator";
 
 export {
   draw_dna,
@@ -17,5 +18,6 @@ export {
   draw_transnationalA,
   draw_riboswitch,
   draw_rna,
-  draw_site
+  draw_site,
+  draw_terminator
 };

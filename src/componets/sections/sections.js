@@ -7,6 +7,7 @@ import TnrASection from "./section_transnational_a";
 import RiboswitchSection from "./section_riboswitch";
 import RNASection from "./section_rna";
 import SiteSection from "./sections_tf_binding_sites";
+import TerminatorSection from "./section_terminator";
 
 export {
   DNAsection,
@@ -17,5 +18,6 @@ export {
   TnrASection,
   RiboswitchSection,
   RNASection,
-  SiteSection
+  SiteSection,
+  TerminatorSection
 };

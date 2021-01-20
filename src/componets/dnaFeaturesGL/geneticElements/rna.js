@@ -119,6 +119,9 @@ export default function DrawRna({
     strand: strand,
     color: color,
     opacity: color,
-    stroke: stroke
+    stroke: stroke,
+    font: font,
+    objectType: "rna",
+    tooltip: tooltip
   };
 }

@@ -126,6 +126,9 @@ export default function DrawTransnationalAttenuator({
     strand: strand,
     color: color,
     opacity: color,
-    stroke: stroke
+    stroke: stroke,
+    font: font,
+    objectType: "transnational_attenuator",
+    tooltip: tooltip
   };
 }
