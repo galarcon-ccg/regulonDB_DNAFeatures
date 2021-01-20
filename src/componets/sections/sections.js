@@ -6,6 +6,7 @@ import PromotorSection from "./section_promoter";
 import TnrASection from "./section_transnational_a";
 import RiboswitchSection from "./section_riboswitch";
 import RNASection from "./section_rna";
+import SiteSection from "./sections_tf_binding_sites";
 
 export {
   DNAsection,
@@ -15,5 +16,6 @@ export {
   PromotorSection,
   TnrASection,
   RiboswitchSection,
-  RNASection
+  RNASection,
+  SiteSection
 };

@@ -9,7 +9,8 @@ import {
   draw_promoter,
   draw_riboswitch,
   draw_transnationalA,
-  draw_rna
+  draw_rna,
+  draw_site
 } from "./geneticElements/genetic_elements";
 
 const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
@@ -170,6 +171,24 @@ const Canvas = ({ dnaFeatures_data = [], id_drawPlace, id_canvas }) => {
             case "rna":
               dna_elements.push(
                 draw_rna({
+                  id: feature?._id,
+                  canva: canvas,
+                  dna: dna,
+                  leftEndPosition: feature?.leftEndPosition,
+                  rightEndPosition: feature?.rightEndPosition,
+                  strand: feature?.strand,
+                  labelName: feature?.labelName,
+                  stroke: stroke(feature),
+                  font: font(feature),
+                  color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                  tooltip: feature?.tooltip,
+                  separation: 0
+                })
+              );
+              break;
+            case "tf_binding_site":
+              dna_elements.push(
+                draw_site({
                   id: feature?._id,
                   canva: canvas,
                   dna: dna,

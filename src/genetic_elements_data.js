@@ -8,6 +8,45 @@ export const base = [
     strand: "forward"
   }
 ];
+
+export const sites_data = [
+  {
+    _id: "site-dna",
+    objectType: "dna",
+    labelName: "",
+    leftEndPosition: "50",
+    rightEndPosition: "500",
+    strand: "forward"
+  },
+  {
+    _id: "site",
+    objectType: "tf_binding_site",
+    labelName: "hola",
+    leftEndPosition: "200",
+    rightEndPosition: "230",
+    strand: "forward",
+    objectRGBColor: "100,255,25"
+  },
+  {
+    _id: "siteA",
+    objectType: "tf_binding_site",
+    labelName: "hola",
+    leftEndPosition: "100",
+    rightEndPosition: "150",
+    strand: "forward",
+    objectRGBColor: "0,255,230"
+  },
+  {
+    _id: "siteB",
+    objectType: "tf_binding_site",
+    labelName: "hola",
+    leftEndPosition: "400",
+    rightEndPosition: "450",
+    strand: "reverse",
+    objectRGBColor: "0,255,0"
+  }
+];
+
 export const rna_data = [
   {
     _id: "rna-dna",
